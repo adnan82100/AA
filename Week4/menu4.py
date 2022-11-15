@@ -1,9 +1,7 @@
-import Functions as func
-shopping_basket = {}
-order_status = 'preparing'
-orders_list = []
-func.products_order()
-func.courier_order()
+import Functions2 as func
+func.load_products()
+func.load_orders()
+func.load_courier()
 print(" |Cafe Generation| " )
 main_menu = int(input(" '0' To Exit App \n '1' For Product Menu \n '2' For Order Menu \n '3' For Courier Menu \n >>>"))
 while main_menu != 0:
@@ -29,52 +27,25 @@ while main_menu != 0:
 
     elif main_menu == 2: #TODO: make a while loop to keep asking to add things to basket
 
-        order_menu = int(input("""
-        0 To Return to Main Menu
-        1 To View Orders
-        2 Add customer information
-        3 to update existing order status
-        4 to update order
-        5 to delete order """))
+        order_menu = int(input(" '0' To Return to Main Menu \n 1 To View Orders \n 2 Add customer information \n 3 to update existing order status \n 4 to update order \n 5 to delete order \n>>>"))
         while order_menu != 0:
             if order_menu == 1:
-                print(orders_list)
+                func.load_order()
+                order_menu = int(input(" '0' To Return to Main Menu \n 1 To View Orders \n 2 Add customer information \n 3 to update existing order status \n 4 to update order \n 5 to delete order \n>>>"))
             elif order_menu == 2:
-                customer_name = input("What is your name?: ")
-                customer_address = input('what is your address?: ')
-                customer_number = input('what is your number?:')
-                shopping_basket['Customer Name: '] = customer_name
-                shopping_basket['Customer Address: '] = customer_address
-                shopping_basket['Customer Number'] = customer_number
-                shopping_basket['order_status'] = order_status
-                print(shopping_basket)
-                orders_list.append(shopping_basket)
+                func.create_order()
+                order_menu = int(input(" '0' To Return to Main Menu \n 1 To View Orders \n 2 Add customer information \n 3 to update existing order status \n 4 to update order \n 5 to delete order \n>>>"))
             elif order_menu == 3:
-                update_status = input('what would you like to change Order Status too?')
-                shopping_basket['order_status'] = update_status
-                print(shopping_basket)
+                func.change_order_status()
+                order_menu = int(input(" '0' To Return to Main Menu \n 1 To View Orders \n 2 Add customer information \n 3 to update existing order status \n 4 to update order \n 5 to delete order \n>>>"))
             elif order_menu == 4:
-                for i in enumerate(orders_list):
-                    print(i)
-                    Change_o = int(input("which order would you like to change"))
-                    print(orders_list[Change_o])
-                    new_name = input("What is your name?: ")
-                    new_address = input('what is your address?: ')
-                    new_number = input('what is your number?:')
-                    new_status = input('what is the status')
-                    Dictionary2 = {'Customer Name:': new_name,'Customer Address:': new_address,'Customer Number:': new_number,'Order Status': new_status,}
-                    orders_list[Change_o] = Dictionary2
-                    print(orders_list)
+                func.change_order()
+                order_menu = int(input(" '0' To Return to Main Menu \n 1 To View Orders \n 2 Add customer information \n 3 to update existing order status \n 4 to update order \n 5 to delete order \n>>>"))
             elif order_menu == 5:
-                shopping_basket.clear()
-                print(shopping_basket)
-            order_menu = int(input(""" 0 To Return to Main Menu
-                    1 To print Order 
-                    2 Customer information
-                    3 to update existing order status
-                    4 to update order
-                    5 to delete order
-                    """))
+                func.delete_order()
+                order_menu = int(input(" '0' To Return to Main Menu \n 1 To View Orders \n 2 Add customer information \n 3 to update existing order status \n 4 to update order \n 5 to delete order \n>>>"))
+        
+        
         main_menu = int(input(" '0' To Exit App \n '1' For Product Menu \n '2' For Order Menu \n '3' For Courier Menu \n >>>"))
         
     if main_menu == 3:
@@ -96,16 +67,21 @@ while main_menu != 0:
                 Courier_menu = int(input(" '0' To Exit To MainMenu \n '1' To View Courier \n '2' To Create New Courier \n '3' To Change Courier \n '4' To Delete Courier\n >>>"))
                 #change courier
             elif Courier_menu == 4:
-                func.delete_courier
+                func.delete_courier()
                 Courier_menu = int(input(" '0' To Exit To MainMenu \n '1' To View Courier \n '2' To Create New Courier \n '3' To Change Courier \n '4' To Delete Courier\n >>>"))
                 #delete #courier
+        
+        
         main_menu = int(input(" '0' To Exit App \n '1' For Product Menu \n '2' For Order Menu \n '3' For Courier Menu \n >>>"))
+
+
 else:
     ans = input("would you like to continue or exit: ")
     if ans == "exit":
         #save and quit
-        func.close_save_people()
-        func.close_save_product()
+        func.save_courier()
+        func.save_products()
+        func.save_orders()
         exit()
 
             
